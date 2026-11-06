@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33289952058290932}
   - component: {fileID: 23813266606381512}
   m_Layer: 0
-  m_Name: SM_Icon_Health_01
+  m_Name: Shield
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

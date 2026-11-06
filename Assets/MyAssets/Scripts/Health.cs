@@ -8,16 +8,25 @@ public class Health : MonoBehaviour
     public bool shielded;
     int current;
     float invulnerableUntil;
+    PlayerShield shield;
 
     public int Current => current;
     public int Max => max;
 
-    void Awake() => current = max;
+    void Awake()
+    {
+        current = max;
+        shield = GetComponent<PlayerShield>();   // optional shield pickup component
+    }
 
     // True if the hit landed. A player who is down, or still invulnerable, can't be hit.
     public bool TakeDamage(int amount)
     {
         if (current <= 0 || Time.time < invulnerableUntil) return false;
+
+        // One-hit shield from the shield pickup: block the damage and use it up
+        if (shield != null && shield.TryAbsorb()) return false;
+
         invulnerableUntil = Time.time + iFrames;
         if (shielded)
         {
