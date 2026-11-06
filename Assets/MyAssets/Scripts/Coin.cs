@@ -3,20 +3,22 @@ using UnityEngine;
 public class Coin : MonoBehaviour
 {
     [SerializeField] float spinSpeed = 90f;
-
-    bool collected;
-
+    [SerializeField] int value = 1;
+    void Start()
+    {
+        Debug.Log("Coin spawned: " + name);
+    }
     void Update()
     {
-        transform.Rotate(0f, spinSpeed * Time.deltaTime, 0f, Space.World);
+        transform.Rotate(0f, spinSpeed * Time.deltaTime, 0f);
     }
 
     void OnTriggerEnter(Collider other)
     {
-        if (collected || !other.CompareTag("Player")) return;
-        collected = true;
+        if (!other.CompareTag("Player")) return;
 
-        GameManager.Instance.AddScore(1);
+        Debug.Log("Coin collected");
+        GameManager.Instance.AddScore(value);
         Destroy(gameObject);
     }
 }

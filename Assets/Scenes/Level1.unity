@@ -1069,6 +1069,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1729945580980676, guid: 7bc251a7285632341a306c70a8f1cfbe, type: 3}
       insertIndex: -1
       addedObject: {fileID: 760856967}
+    - targetCorrespondingSourceObject: {fileID: 1729945580980676, guid: 7bc251a7285632341a306c70a8f1cfbe, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 760856971}
   m_SourcePrefab: {fileID: 100100000, guid: 7bc251a7285632341a306c70a8f1cfbe, type: 3}
 --- !u!1 &551311105
 GameObject:
@@ -1324,7 +1327,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   maxLives: 3
-  targetScore: 5
+  targetScore: 8
   lives: 3
   respawnDelay: 0.6
   spawnProtection: 1.5
@@ -1339,8 +1342,7 @@ MonoBehaviour:
   timeLimit: 130
   timerText: {fileID: 475937033}
   heartPrefab: {fileID: 5370271930656342383, guid: 610f1639afa71d54ba67a75c64a21a4a, type: 3}
-  heartSpawnPoints:
-  - {fileID: 0}
+  heartSpawnPoints: []
 --- !u!4 &631632879
 Transform:
   m_ObjectHideFlags: 0
@@ -1933,6 +1935,18 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.25614974
   m_Center: {x: 0, y: 0.000000007450581, z: 0.0000000018626451}
+--- !u!114 &760856971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 760856963}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7ef1c22bd370fd41bf84b9871483b7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Star
 --- !u!1 &787312525
 GameObject:
   m_ObjectHideFlags: 0
@@ -4749,7 +4763,7 @@ Transform:
   m_GameObject: {fileID: 1790833521}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.2, y: -0.44, z: 19.5}
+  m_LocalPosition: {x: 0.2, y: 0.4, z: 19.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4830,7 +4844,11 @@ MonoBehaviour:
   coinPrefab: {fileID: 1423928566906578, guid: c9fac742503ccc144a9d41b6e0ab1643, type: 3}
   maxCoins: 5
   coinHeight: 0.5
+  coinRadius: 0.3
   areaSize: {x: 45, y: 0.1, z: 40}
+  wallMask:
+    serializedVersion: 2
+    m_Bits: 0
   player: {fileID: 2078543686}
   minDistanceFromPlayer: 1.5
 --- !u!4 &1859294476
@@ -5628,9 +5646,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Restart
-
-'
+  m_text: 'Next Level '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -5771,9 +5787,9 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 1
+  m_CollisionDetection: 2
 --- !u!114 &2078543682
 MonoBehaviour:
   m_ObjectHideFlags: 0
