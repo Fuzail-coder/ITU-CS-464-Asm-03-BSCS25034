@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-// Lecture 06's GameManager, with lives, a respawn, a way to lose and a level timer.
+// Lecture 06's GameManager, with lives, a respawn, a way to lose, a level timer and a door.
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
@@ -20,6 +20,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject losePanel;
     [SerializeField] TMP_Text winTitle;   // the "Congratulations! You Win" text in WinPanel
 
+    [Header("Door (destroyed when all coins are collected)")]
+    [SerializeField] GameObject door;     // drag your door here
+
     [Header("Timer")]
     [SerializeField] float timeLimit = 60f;   // seconds; set 0 for no timer
     [SerializeField] TMP_Text timerText;
@@ -30,6 +33,9 @@ public class GameManager : MonoBehaviour
     int score;
     float timeLeft;
     bool finished;
+
+    public int Score => score;
+    public int TargetScore => targetScore;
 
     void Awake() => Instance = this;
 
@@ -73,7 +79,12 @@ public class GameManager : MonoBehaviour
 
         score += amount;
         UpdateUI();
-        if (score >= targetScore) Win();
+        if (score >= targetScore) OpenDoor();   // was Win(); now the star wins the game
+    }
+
+    void OpenDoor()
+    {
+        if (door != null) Destroy(door);
     }
 
     public void UpdateUI()
@@ -116,7 +127,7 @@ public class GameManager : MonoBehaviour
         player.Restore(spawnProtection);
     }
 
-    void Win()
+    public void Win()   // public so the Star can call it
     {
         if (finished) return;
         finished = true;
